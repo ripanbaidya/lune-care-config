@@ -1,0 +1,16 @@
+# Never commit real secrets
+.env
+*.env
+!.env.example
+
+# RSA keys — manage separately (out-of-band)
+secrets/
+*.pem
+*.key
+*.p12
+*.jks
+
+# IDE
+.idea/
+*.iml
+.DS_Store
