@@ -1,4 +1,6 @@
-# config for config-server (all profiles)
+# NOTE: This config-server does not read its own configuration from any external source (e.g., a Git repository).
+# This file is included in the repository for reference and sharing purposes only.
+# The config-server will use its local configuration at runtime.
 
 server:
   port: 8888
