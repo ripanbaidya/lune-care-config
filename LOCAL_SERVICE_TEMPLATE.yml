@@ -1,0 +1,18 @@
+# local application.yml (inside each service's codebase)
+# this is the ONLY file that stays in your service's src/main/resources.
+# all real config lives in the lune-care-config Git repo.
+# replace {service-name} with actual name e.g. auth, doctor, etc.
+# replace {port} with the service's port e.g. 8081, 8083, etc.
+
+spring:
+  application:
+    name: {service-name}
+
+  profiles:
+    active: dev # override via env var: SPRING_PROFILES_ACTIVE=prod
+
+  config:
+    import: "optional:configserver:http://localhost:8888"
+
+server:
+  port: {port}
