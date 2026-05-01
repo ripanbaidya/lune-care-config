@@ -1,0 +1,41 @@
+# config for api-gateway
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration
+
+  codec:
+    max-in-memory-size: 10MB
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+      httpclient:
+        connect-timeout: 5000
+        response-timeout: 10s
+
+  data:
+    redis:
+      database: 0
+
+app:
+  security:
+    jwt:
+      issuer: "LuneCare"
+    rsa:
+      public-key-path: secrets/keys/public_key.pem
+
+info:
+  app:
+    name: "LuneCare API Gateway Service"
+    version: "v1.0.0"
+    description: "Centralized API Gateway responsible for routing, filtering, and securing requests."

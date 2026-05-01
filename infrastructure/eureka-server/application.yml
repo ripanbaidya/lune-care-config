@@ -1,0 +1,25 @@
+# config for eureka-server (all profiles)
+
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    eviction-interval-timer-in-ms: 5000
+
+info:
+  app:
+    name: "LuneCare Service Registry (Eureka Server)"
+    version: "v1.0.0"
+    description: "Service discovery server for the LuneCare ecosystem."

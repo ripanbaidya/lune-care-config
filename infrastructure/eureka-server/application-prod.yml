@@ -1,0 +1,11 @@
+# config for eureka-server - prod
+
+eureka:
+  instance:
+    hostname: ${EUREKA_HOSTNAME}
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_HOSTNAME}:${server.port}/eureka/
+  server:
+    # Tighten eviction in prod
+    eviction-interval-timer-in-ms: 3000

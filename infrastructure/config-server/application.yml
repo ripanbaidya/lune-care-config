@@ -1,0 +1,32 @@
+# config for config-server (all profiles)
+
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+
+  cloud:
+    config:
+      server:
+        git:
+          default-label: main
+          timeout: 10
+          force-pull: true
+          clone-on-start: true
+          refresh-rate: 30
+          search-paths:
+            - "."
+            - "services/{application}"
+            - "infrastructure/{application}"
+
+    bus:
+      enabled: true
+      id: ${spring.application.name}:${server.port}
+
+info:
+  app:
+    name: "LuneCare Configuration Server"
+    version: "v1.0.0"
+    description: "Centralized configuration service powered by Spring Cloud Config."

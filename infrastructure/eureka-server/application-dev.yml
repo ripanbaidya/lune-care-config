@@ -1,0 +1,5 @@
+# config for eureka-server - dev
+
+eureka:
+  instance:
+    hostname: localhost
