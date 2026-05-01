@@ -1,4 +1,0 @@
-# Root Configuration for Config Server
-spring:
-  application:
-    name: lune-care-config
