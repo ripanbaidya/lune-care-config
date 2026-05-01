@@ -1,0 +1,55 @@
+# config for payment (all profiles)
+
+server:
+  port: 8085
+
+spring:
+  application:
+    name: payment
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+
+  cloud:
+    openfeign:
+      okhttp:
+        enabled: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+rabbitmq:
+  exchange:
+    name: lune.care.exchange
+  queues:
+    appointment-cancelled: payment.appointment.cancelled.queue
+
+app:
+  payment:
+    currency: INR
+    gateway:
+      razorpay:
+        enabled: true
+        key-id: ${RAZORPAY_KEY_ID}
+        key-secret: ${RAZORPAY_KEY_SECRET}
+      stripe:
+        enabled: true
+        secret-key: ${STRIPE_SECRET_KEY}
+        webhook-secret: ${STRIPE_WEBHOOK_SECRET}
+
+info:
+  app:
+    name: "LuneCare Payment Service"
+    version: "v1.0.0"
+    description: "Service for processing payments and managing transactions."

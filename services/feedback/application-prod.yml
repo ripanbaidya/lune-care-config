@@ -1,0 +1,6 @@
+# config for feedback - prod
+
+spring:
+  data:
+    mongodb:
+      uri: ${FEEDBACK_MONGODB_URI}

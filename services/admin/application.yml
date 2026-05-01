@@ -1,0 +1,23 @@
+# config for admin (all profiles)
+
+server:
+  port: 8088
+
+spring:
+  application:
+    name: admin
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+
+  cloud:
+    openfeign:
+      okhttp:
+        enabled: true
+
+info:
+  app:
+    name: "LuneCare Admin Service"
+    version: "v1.0.0"
+    description: "Administrative service providing API documentation and management capabilities."

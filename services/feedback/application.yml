@@ -1,0 +1,24 @@
+# config for feedback (all profiles)
+
+server:
+  port: 8087
+
+spring:
+  application:
+    name: feedback
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+
+rabbitmq:
+  exchange:
+    name: lune.care.exchange
+  queues:
+    appointment-completed: feedback.appointment.completed.queue
+
+info:
+  app:
+    name: "LuneCare Feedback Service"
+    version: "v1.0.0"
+    description: "Service for collecting and processing patient feedback."

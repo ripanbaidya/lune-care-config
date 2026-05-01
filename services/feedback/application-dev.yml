@@ -1,0 +1,6 @@
+# config for feedback - dev
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongouser:mongopass@localhost:27019/feedback_db?authSource=admin

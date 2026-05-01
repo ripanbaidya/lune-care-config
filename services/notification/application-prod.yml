@@ -1,0 +1,6 @@
+# config for notification - prod
+
+spring:
+  data:
+    mongodb:
+      uri: ${NOTIFICATION_MONGODB_URI}

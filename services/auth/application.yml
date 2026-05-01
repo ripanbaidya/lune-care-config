@@ -1,0 +1,50 @@
+# config for auth (all profiles)
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: auth
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  data:
+    redis:
+      database: 0
+
+app:
+  security:
+    jwt:
+      issuer: "LuneCare"
+      header: "Authorization"
+      prefix: "Bearer "
+      access-token:
+        expiry: ${JWT_ACCESS_TOKEN_EXPIRY:3600000}
+      refresh-token:
+        expiry: ${JWT_REFRESH_TOKEN_EXPIRY:604800000}
+    rsa:
+      algorithm: "RSA"
+      private-key-path: secrets/keys/private_key.pem
+      public-key-path: secrets/keys/public_key.pem
+
+info:
+  app:
+    name: "LuneCare Authentication & Authorization Service"
+    version: "v1.0.0"
+    description: "Core security service for JWT-based identity management."

@@ -1,0 +1,6 @@
+# config for notification - dev
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongouser:mongopass@localhost:27018/notification_db?authSource=admin

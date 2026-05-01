@@ -1,0 +1,14 @@
+# config for auth - dev
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/auth_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379

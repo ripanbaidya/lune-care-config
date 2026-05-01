@@ -1,0 +1,14 @@
+# config for appointment - dev
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5436/appointment_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
