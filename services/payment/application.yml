@@ -36,6 +36,57 @@ rabbitmq:
     # Queue triggered when an appointment is cancelled (used for payment rollback/refund handling)
     appointment-cancelled: payment.appointment.cancelled.queue
 
+resilience4j:
+  circuitbreaker:
+    instances:
+      appointment-service:
+        sliding-window-type: COUNT_BASED
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+        permitted-number-of-calls-in-half-open-state: 3
+        register-health-indicator: true
+
+      razorpay:
+        sliding-window-type: COUNT_BASED
+        sliding-window-size: 5
+        failure-rate-threshold: 60
+        wait-duration-in-open-state: 60s
+        permitted-number-of-calls-in-half-open-state: 2
+        register-health-indicator: true
+
+      stripe:
+        sliding-window-type: COUNT_BASED
+        sliding-window-size: 5
+        failure-rate-threshold: 60
+        wait-duration-in-open-state: 60s
+        permitted-number-of-calls-in-half-open-state: 2
+        register-health-indicator: true
+
+  retry:
+    instances:
+      appointment-service-read:
+        max-attempts: 3
+        wait-duration: 500ms
+        retry-exceptions:
+          - feign.RetryableException
+          - java.net.ConnectException
+          - java.util.concurrent.TimeoutException
+
+      payment-gateway:
+        max-attempts: 2
+        wait-duration: 1s
+        retry-exceptions:
+          - feign.RetryableException
+          - java.net.ConnectException
+
+      release-slot:
+        max-attempts: 2
+        wait-duration: 300ms
+        retry-exceptions:
+          - feign.RetryableException
+          - java.net.ConnectException
+
 app:
   payment:
     currency: INR

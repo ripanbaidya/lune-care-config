@@ -44,6 +44,30 @@ rabbitmq:
     # Queue for handling payment-related events
     payment: appointment.payment.queue
 
+resilience4j:
+  circuitbreaker:
+    instances:
+      doctor-service:
+        sliding-window-type: COUNT_BASED
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+        permitted-number-of-calls-in-half-open-state: 3
+        register-health-indicator: true
+
+  retry:
+    instances:
+      doctor-service:
+        max-attempts: 3
+        wait-duration: 500ms
+        retry-exceptions:
+          - feign.RetryableException
+          - java.net.ConnectException
+          - java.util.concurrent.TimeoutException
+        ignore-exceptions:
+          - com.healthcare.appointment.exception.AppointmentException
+          - com.healthcare.appointment.exception.SlotException
+
 app:
   appointment:
     # Time (in hours) before appointment after which cancellation is not allowed
