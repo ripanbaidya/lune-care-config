@@ -3,6 +3,6 @@
 spring:
   data:
     redis:
-      host: ${REDIS_HOST}
+      host: '{cipher}0661f762988c45490c8884f52a6ec38ea0fcb6c59d27d0124fc77d8c3c613c17287ea44a859aaed72a1b28fe6ac5ac98'
       port: ${REDIS_PORT:6379}
-      password: ${REDIS_PASSWORD}
+      password: '{cipher}bbe2da11bca0dade345bf6def2bc09c1d0a2e36458bd261ddeb98e6aee7cf93255f291251c1857ac0018f316cbc54524ca964f777f9d4138e17efc87cac47300a5ac8c65a73593a3bfcaa4f5c48c4d34'

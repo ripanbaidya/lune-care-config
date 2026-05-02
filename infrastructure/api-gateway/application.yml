@@ -10,6 +10,9 @@ spring:
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration
 
+  # WebFlux codec configuration (handles serialization/deserialization)
+  # Defines the maximum in-memory buffer size for request/response payloads
+  # Must be aligned with or greater than multipart upload size limits
   codec:
     max-in-memory-size: 10MB
 
@@ -17,10 +20,19 @@ spring:
     gateway:
       discovery:
         locator:
+          # Disables automatic route creation using service discovery
           enabled: false
+          # Ensures service IDs are normalized to lowercase for routing consistency
           lower-case-service-id: true
+      
+      # Configuration of the Netty-based HTTP client used internally by Spring Cloud Gateway
       httpclient:
+        # Maximum time allowed to establish a TCP connection with downstream services
+        # If exceeded, a connection timeout exception is thrown
         connect-timeout: 5000
+
+        # Maximum time to wait for a response after connection is established
+        # If exceeded, a read timeout exception is triggered
         response-timeout: 10s
 
   data:

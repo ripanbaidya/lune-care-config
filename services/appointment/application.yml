@@ -34,19 +34,25 @@ spring:
       database: 0
 
 rabbitmq:
+  # Central exchange for LuneCare messaging
   exchange:
     name: lune.care.exchange
   queues:
+    # Queue for sending appointment-related notifications
     notification: appointment.notification.queue
+
+    # Queue for handling payment-related events
     payment: appointment.payment.queue
 
 app:
   appointment:
+    # Time (in hours) before appointment after which cancellation is not allowed
     cancellation-cutoff-hours: 2
+    # Time (in minutes) allowed to complete payment before expiration
     payment-timeout-minutes: 15
 
 info:
   app:
     name: "LuneCare Appointment Service"
     version: "v1.0.0"
-    description: "Service for managing appointment scheduling and workflows."
+    description: "Service responsible for managing appointment scheduling, coordination, and related workflows within the LuneCare healthcare microservices ecosystem."

@@ -20,4 +20,4 @@ info:
   app:
     name: "LuneCare Admin Service"
     version: "v1.0.0"
-    description: "Administrative service providing API documentation and management capabilities."
+    description: "Administrative service providing API documentation, monitoring interfaces, and management capabilities for the LuneCare healthcare microservices ecosystem."

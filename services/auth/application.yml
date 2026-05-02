@@ -35,9 +35,10 @@ app:
       header: "Authorization"
       prefix: "Bearer "
       access-token:
-        expiry: ${JWT_ACCESS_TOKEN_EXPIRY:3600000}
+        expiry: ${JWT_ACCESS_TOKEN_EXPIRY:3600000} # 1h
       refresh-token:
-        expiry: ${JWT_REFRESH_TOKEN_EXPIRY:604800000}
+        expiry: ${JWT_REFRESH_TOKEN_EXPIRY:604800000} # 7d
+    
     rsa:
       algorithm: "RSA"
       private-key-path: secrets/keys/private_key.pem
@@ -47,4 +48,4 @@ info:
   app:
     name: "LuneCare Authentication & Authorization Service"
     version: "v1.0.0"
-    description: "Core security service for JWT-based identity management."
+    description: "Core security service responsible for user authentication, authorization, and JWT-based identity management within the LuneCare healthcare microservices ecosystem."

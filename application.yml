@@ -60,5 +60,3 @@ springdoc:
     tags-sorter: alpha
     doc-expansion: none
     filter: true
-    show-actuator: true
-    

@@ -15,10 +15,11 @@ rabbitmq:
   exchange:
     name: lune.care.exchange
   queues:
+    # Queue for handling appointment-related events (used for triggering notifications)
     appointment-events: notification.appointment.events.queue
 
 info:
   app:
     name: "LuneCare Notification Service"
     version: "v1.0.0"
-    description: "Service for processing and delivering notifications."
+    description: "Service responsible for processing and delivering notifications (such as appointment updates and alerts) across the LuneCare healthcare microservices ecosystem."

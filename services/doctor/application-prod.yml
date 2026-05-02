@@ -2,12 +2,17 @@
 
 spring:
   datasource:
-    url: ${DOCTOR_DB_URL}
-    username: ${DOCTOR_DB_USERNAME}
-    password: ${DOCTOR_DB_PASSWORD}
+    url: '{cipher}36c122cde0a8c33caaa2868aaa2463a9b8712673223789cb1fa6f833cf27e8bf832794152409b26d1b7a6b558b7e2b63ebc83c911d46cbc9f4d7f1c04f2882eaa4702afda0b6c1d0542952f1c953dfb372ec517979f080cb66a26391072dd9d49ac64c30f5ee50247b501ac0117e1947a341886b7fb488e1950389111e2e559a677fffd1f2d1ac4f84a13807296c22d5160ce74a7c778016b4d61a5aea0eed9ca6f7a97f96b3f4ced7ec994555c6a53a'
+    username: '{cipher}58f5c8f8c83dadf83772ca7a82496a5657df314fa9ed500d9b5e6173311e5fd2'
+    password: '{cipher}38717366d6a69cf3f554b132fdab51ca4dbf04d8f043c506d0164abdf1c7922cbca24ec5aff6de2f69c5442b07d299ca'
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 15
       minimum-idle: 3
   jpa:
     show-sql: false
+
+
+# doctor.db.url: '{cipher}36c122cde0a8c33caaa2868aaa2463a9b8712673223789cb1fa6f833cf27e8bf832794152409b26d1b7a6b558b7e2b63ebc83c911d46cbc9f4d7f1c04f2882eaa4702afda0b6c1d0542952f1c953dfb372ec517979f080cb66a26391072dd9d49ac64c30f5ee50247b501ac0117e1947a341886b7fb488e1950389111e2e559a677fffd1f2d1ac4f84a13807296c22d5160ce74a7c778016b4d61a5aea0eed9ca6f7a97f96b3f4ced7ec994555c6a53a'
+# doctor.db.username: '{cipher}58f5c8f8c83dadf83772ca7a82496a5657df314fa9ed500d9b5e6173311e5fd2'
+# doctor.db.password: '{cipher}38717366d6a69cf3f554b132fdab51ca4dbf04d8f043c506d0164abdf1c7922cbca24ec5aff6de2f69c5442b07d299ca'

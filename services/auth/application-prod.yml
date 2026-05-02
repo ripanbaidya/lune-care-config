@@ -2,9 +2,9 @@
 
 spring:
   datasource:
-    url: ${AUTH_DB_URL}
-    username: ${AUTH_DB_USERNAME}
-    password: ${AUTH_DB_PASSWORD}
+    url: '{cipher}96e6edff6fc07d5dd7ee91bc4b2fbbc763d31d53d2cc31b3eac9502a3a6f13143ab902fc7e1902a5a2c8a6edfaac82930ab91e28bb3107dc6defcc2de311117190cc337bf09e2293f43f55dd5be2c675501773f6db7de09c7466ce09d2ab78f0bab407247a01f370911a5cc6a2a8260ec2c13a2024eddacb99e1081663ff65aadb2434e4571d8bb48e18e5e3a022a4b1e87df059186c5cf8098f4895919a790d913731d36a7cf4e5345313f2acc94297'
+    username: '{cipher}9baabbdb9c905f4f6ca69c05f19a7effbf5206521759914acb432efc2b42d8a5'
+    password: '{cipher}70029d2a3e07d6efd5da151dbb1b4b6fa80c756efc2383b75685153e8a2e3a36859aad103fee7a020ff68e9ebf927530'
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 20
@@ -16,6 +16,17 @@ spring:
     show-sql: false
   data:
     redis:
-      host: ${REDIS_HOST}
-      port: ${REDIS_PORT}
-      password: ${REDIS_PASSWORD}
+      host: '{cipher}0661f762988c45490c8884f52a6ec38ea0fcb6c59d27d0124fc77d8c3c613c17287ea44a859aaed72a1b28fe6ac5ac98'
+      port: 6379
+      password: '{cipher}bbe2da11bca0dade345bf6def2bc09c1d0a2e36458bd261ddeb98e6aee7cf93255f291251c1857ac0018f316cbc54524ca964f777f9d4138e17efc87cac47300a5ac8c65a73593a3bfcaa4f5c48c4d34'
+
+
+# auth.db.url: '{cipher}96e6edff6fc07d5dd7ee91bc4b2fbbc763d31d53d2cc31b3eac9502a3a6f13143ab902fc7e1902a5a2c8a6edfaac82930ab91e28bb3107dc6defcc2de311117190cc337bf09e2293f43f55dd5be2c675501773f6db7de09c7466ce09d2ab78f0bab407247a01f370911a5cc6a2a8260ec2c13a2024eddacb99e1081663ff65aadb2434e4571d8bb48e18e5e3a022a4b1e87df059186c5cf8098f4895919a790d913731d36a7cf4e5345313f2acc94297'
+# auth.db.username: '{cipher}9baabbdb9c905f4f6ca69c05f19a7effbf5206521759914acb432efc2b42d8a5'
+# auth.db.password: '{cipher}70029d2a3e07d6efd5da151dbb1b4b6fa80c756efc2383b75685153e8a2e3a36859aad103fee7a020ff68e9ebf927530'
+
+# redis.host: '{cipher}0661f762988c45490c8884f52a6ec38ea0fcb6c59d27d0124fc77d8c3c613c17287ea44a859aaed72a1b28fe6ac5ac98'
+# redis.port: 6379
+# redis.password: '{cipher}bbe2da11bca0dade345bf6def2bc09c1d0a2e36458bd261ddeb98e6aee7cf93255f291251c1857ac0018f316cbc54524ca964f777f9d4138e17efc87cac47300a5ac8c65a73593a3bfcaa4f5c48c4d34'
+
+

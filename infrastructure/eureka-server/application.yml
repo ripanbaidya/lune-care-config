@@ -22,4 +22,4 @@ info:
   app:
     name: "LuneCare Service Registry (Eureka Server)"
     version: "v1.0.0"
-    description: "Service discovery server for the LuneCare ecosystem."
+    description: "Service discovery server responsible for registering and managing all microservices within the LuneCare healthcare ecosystem, enabling dynamic service lookup and load balancing."

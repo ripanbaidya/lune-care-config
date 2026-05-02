@@ -13,6 +13,7 @@ spring:
 
   servlet:
     multipart:
+      # Enable file upload support
       enabled: true
       max-file-size: 5MB
       max-request-size: 5MB
@@ -39,9 +40,13 @@ app:
   integrations:
     cloudinary:
       enabled: true
-      cloud-name: ${CLOUDINARY_CLOUD_NAME}
-      api-key: ${CLOUDINARY_API_KEY}
-      api-secret: ${CLOUDINARY_API_SECRET}
+      cloud-name: '{cipher}e46ac8244871a11a1127f8660f1bed6dc1a0b71c352211b27a175c774ac5c036'
+      api-key: '{cipher}202614d6852f17bb293b81a4bb4ef204829d6a3c44431d39a5e20a675fed025f'
+      api-secret: '{cipher}6854cdbf62fe461e8338bbd79530c60b5e7dc9fc2bdc2c536996d3426b8ab73e9f8685fbc390b6801775f21d154869cb'
+
+# cloudinary.cloud.name: '{cipher}e46ac8244871a11a1127f8660f1bed6dc1a0b71c352211b27a175c774ac5c036'
+# cloudinary.api.key: '{cipher}202614d6852f17bb293b81a4bb4ef204829d6a3c44431d39a5e20a675fed025f'
+# cloudinary.api.secret: '{cipher}6854cdbf62fe461e8338bbd79530c60b5e7dc9fc2bdc2c536996d3426b8ab73e9f8685fbc390b6801775f21d154869cb'
 
 info:
   app:

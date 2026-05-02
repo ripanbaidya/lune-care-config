@@ -33,6 +33,7 @@ rabbitmq:
   exchange:
     name: lune.care.exchange
   queues:
+    # Queue triggered when an appointment is cancelled (used for payment rollback/refund handling)
     appointment-cancelled: payment.appointment.cancelled.queue
 
 app:
@@ -41,15 +42,22 @@ app:
     gateway:
       razorpay:
         enabled: true
-        key-id: ${RAZORPAY_KEY_ID}
-        key-secret: ${RAZORPAY_KEY_SECRET}
+        key-id: '{cipher}2b71cebe1a1899812001cc91d81c3127ea0995173e06ae9fc13074ae0327e8264522a6d20b8071c5d00bb7cd5ce1012a'
+        key-secret: '{cipher}bef52af5c546bd6e31168a07bf24e9321f85a30c5be548bb25643bb351b1169bcbabab3953abcaaccab6d3893eb58851'
       stripe:
         enabled: true
-        secret-key: ${STRIPE_SECRET_KEY}
-        webhook-secret: ${STRIPE_WEBHOOK_SECRET}
+        secret-key: '{cipher}305be9e76bea4cbb359ce148a625539b0aaf7dac9a9687bf85a0fbd7d6225196c59f8fba8065258696fbe1086d321bf2bb9abc42aa42d6f9b09708216142587e6163fea0f7dec8ef23cb712048dc2e142f81f3581a9741c2196e7796b0e52743ab8ea1dc07a1726191b5e29f889d6221dac6a75a5ed6cc0783101c645c78830e'
+        webhook-secret: '{cipher}dfe869c3ab72e4a92bb57b8f1c3b129e95bb46b40fd7461f06f1e1dc422c3d1a14954f655ca0c6a7bdf1f5ff40c83ff7'
+
+# razorpay.key.id: '{cipher}2b71cebe1a1899812001cc91d81c3127ea0995173e06ae9fc13074ae0327e8264522a6d20b8071c5d00bb7cd5ce1012a'
+# razorpay.key.secret: '{cipher}bef52af5c546bd6e31168a07bf24e9321f85a30c5be548bb25643bb351b1169bcbabab3953abcaaccab6d3893eb58851'
+
+# stripe.publishable.key: '{cipher}92c56ab7817bc1992a80f5ea695d572ced17b822202c34abc5ab0f64b2abb0361881cbfdb518b4e557103624c17e617a23259a7e124f299752dc6e546dcd3f4bd3571864108335a51564f1ed71215a50dba031b478aa31aecd7a74a3bd9df9a74ba31c35221e9c8c59d4b51e17c188bd0cc5bdb729996d6a19581748c2e1d17d'
+# stripe.secret.key: '{cipher}305be9e76bea4cbb359ce148a625539b0aaf7dac9a9687bf85a0fbd7d6225196c59f8fba8065258696fbe1086d321bf2bb9abc42aa42d6f9b09708216142587e6163fea0f7dec8ef23cb712048dc2e142f81f3581a9741c2196e7796b0e52743ab8ea1dc07a1726191b5e29f889d6221dac6a75a5ed6cc0783101c645c78830e'
+# stripe.webhook.secret: '{cipher}dfe869c3ab72e4a92bb57b8f1c3b129e95bb46b40fd7461f06f1e1dc422c3d1a14954f655ca0c6a7bdf1f5ff40c83ff7'
 
 info:
   app:
     name: "LuneCare Payment Service"
     version: "v1.0.0"
-    description: "Service for processing payments and managing transactions."
+    description: "Service responsible for processing payments, managing transactions, and integrating with external payment gateways within the LuneCare healthcare microservices ecosystem."
