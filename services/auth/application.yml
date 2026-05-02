@@ -28,6 +28,23 @@ spring:
     redis:
       database: 0
 
+resilience4j:
+  retry:
+    instances:
+      # Used by: createPatientProfile, createDoctorProfile in AuthServiceImpl
+      # 2 attempts profile creation is non-fatal; we try once more before giving up and logging
+      # for reconciliation. No point in more retries since patient registration latency is user-facing.
+      profile-creation:
+        max-attempts: 2
+        wait-duration: 300ms
+        retry-exceptions:
+          - feign.RetryableException
+          - java.net.ConnectException
+          - java.util.concurrent.TimeoutException
+        ignore-exceptions:
+          # 409 Conflict is expected when profile already created/ exists
+          - feign.FeignException$Conflict
+
 app:
   security:
     jwt:
