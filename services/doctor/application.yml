@@ -36,6 +36,45 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
 
+resilience4j:
+  circuitbreaker:
+    instances:
+      # Guards all calls to auth-service (syncStatusWithAuthService in DoctorServiceImpl)
+      # Critical path: doctor onboarding + verification status sync
+      auth-service:
+        sliding-window-type: COUNT_BASED
+        sliding-window-size: 10
+        failure-rate-threshold: 50 # Open after 5/10 failures
+        wait-duration-in-open-state: 30s # Stay open 30s before probing
+        permitted-number-of-calls-in-half-open-state: 3
+        register-health-indicator: true
+ 
+  retry:
+    instances:
+      # Used by: syncStatusWithAuthService in DoctorServiceImpl
+      # auth-service is internal — network hiccups are transient
+      auth-service:
+        max-attempts: 3
+        wait-duration: 500ms
+        retry-exceptions:
+          - feign.RetryableException
+          - java.net.ConnectException
+          - java.util.concurrent.TimeoutException
+        ignore-exceptions:
+          # Domain exceptions should not be retried — they indicate bad state, not transient failure
+          - com.healthcare.doctor.exception.DoctorException
+          - com.healthcare.doctor.exception.ClinicException
+ 
+      # Used by: cancelAvailableSlotsForDay, triggerSlotGeneration in ClinicScheduleServiceImpl
+      # Both are non-critical — fallback handles gracefully without blocking schedule update
+      appointment-service:
+        max-attempts: 2
+        wait-duration: 300ms
+        retry-exceptions:
+          - feign.RetryableException
+          - java.net.ConnectException
+          - java.util.concurrent.TimeoutException
+
 app:
   integrations:
     cloudinary:
