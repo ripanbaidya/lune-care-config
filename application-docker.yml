@@ -14,3 +14,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://eureka-server:8761/eureka
+  instance:
+    prefer-ip-address: false # override root application.yml
+    hostname: ${spring.application.name} # each service registers by its name
