@@ -1,0 +1,9 @@
+# config for doctor - docker profile
+# Loaded when SPRING_PROFILES_ACTIVE=dev,docker (fully containerized dev stack)
+# Overrides localhost references from application-dev.yml to Docker service names.
+
+spring:
+  datasource:
+    url: jdbc:postgresql://doctor-db:5432/doctor_db
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}

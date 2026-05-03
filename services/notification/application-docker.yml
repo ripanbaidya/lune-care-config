@@ -1,0 +1,8 @@
+# config for notification - docker profile
+# Loaded when SPRING_PROFILES_ACTIVE=dev,docker (fully containerized dev stack)
+# Overrides localhost references from application-dev.yml to Docker service names.
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://${MONGO_USERNAME:mongouser}:${MONGO_PASSWORD:mongopass}@notification-db:27017/notification_db?authSource=admin

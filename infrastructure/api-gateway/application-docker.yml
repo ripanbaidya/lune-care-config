@@ -1,0 +1,10 @@
+# config for api-gateway - docker profile
+# Loaded when SPRING_PROFILES_ACTIVE=dev,docker (fully containerized dev stack)
+# Overrides localhost references from application-dev.yml to Docker service names.
+
+spring:
+  data:
+    redis:
+      host: redis
+      port: 6379
+      password: ${REDIS_PASSWORD:}

@@ -1,0 +1,9 @@
+# config for eureka-server - docker profile
+# Loaded when SPRING_PROFILES_ACTIVE=dev,docker (fully containerized dev stack)
+
+eureka:
+  instance:
+    hostname: eureka-server
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
