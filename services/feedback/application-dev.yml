@@ -3,4 +3,4 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://${MONGO_USERNAME:mongouser}:${MONGO_PASSWORD:mongopass}@mongodb:27017/feedback_db?authSource=admin
+      uri: mongodb://${MONGO_USERNAME:mongouser}:${MONGO_PASSWORD:mongopass}@localhost:27017/feedback_db?authSource=admin
