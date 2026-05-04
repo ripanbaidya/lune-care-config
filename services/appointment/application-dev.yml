@@ -2,7 +2,7 @@
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5436/appointment_db
+    url: jdbc:postgresql://localhost:5432/lunecare?currentSchema=appointment
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver

@@ -3,4 +3,4 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://mongouser:mongopass@localhost:27018/notification_db?authSource=admin
+      uri: mongodb://${MONGO_USERNAME:mongouser}:${MONGO_PASSWORD:mongopass}@mongodb:27017/notification_db?authSource=admin

@@ -20,6 +20,8 @@ spring:
     enabled: true
     locations: classpath:db/migration
     baseline-on-migrate: true
+    schemas: payment
+    default_schema: payment
 
   jpa:
     hibernate:
@@ -28,7 +30,8 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-
+        default_schema: payment
+        
 rabbitmq:
   exchange:
     name: lune.care.exchange

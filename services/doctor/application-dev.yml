@@ -2,7 +2,7 @@
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5435/doctor_db
+    url: jdbc:postgresql://localhost:5432/lunecare?currentSchema=doctor
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver

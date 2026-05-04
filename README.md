@@ -91,3 +91,5 @@ curl -X POST http://localhost:{port}/actuator/refresh
 # Broadcast refresh to ALL services via Spring Cloud Bus
 curl -X POST http://localhost:8888/actuator/busrefresh
 ```
+
+
