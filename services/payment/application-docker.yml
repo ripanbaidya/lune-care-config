@@ -1,9 +1,6 @@
 # config for payment - docker profile
-# Loaded when SPRING_PROFILES_ACTIVE=dev,docker (fully containerized dev stack)
-# Overrides localhost references from application-dev.yml to Docker service names.
-
 spring:
   datasource:
-    url: jdbc:postgresql://payment-db:5432/payment_db
+    url: jdbc:postgresql://postgres:5432/lunecare?currentSchema=payment
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}

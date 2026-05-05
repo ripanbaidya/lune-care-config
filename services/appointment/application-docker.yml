@@ -1,10 +1,7 @@
 # config for appointment - docker profile
-# Loaded when SPRING_PROFILES_ACTIVE=dev,docker (fully containerized dev stack)
-# Overrides localhost references from application-dev.yml to Docker service names.
-
 spring:
   datasource:
-    url: jdbc:postgresql://appointment-db:5432/appointment_db
+    url: jdbc:postgresql://postgres:5432/lunecare?currentSchema=appointment
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
   data:

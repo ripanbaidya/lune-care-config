@@ -1,9 +1,6 @@
 # config for patient - docker profile
-# Loaded when SPRING_PROFILES_ACTIVE=dev,docker (fully containerized dev stack)
-# Overrides localhost references from application-dev.yml to Docker service names.
-
 spring:
   datasource:
-    url: jdbc:postgresql://patient-db:5432/patient_db
+    url: jdbc:postgresql://postgres:5432/lunecare?currentSchema=patient
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}

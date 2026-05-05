@@ -1,11 +1,7 @@
 # config for auth - docker profile
-# Loaded when SPRING_PROFILES_ACTIVE=dev,docker (fully containerized dev stack)
-# Overrides localhost references from application-dev.yml to Docker service names.
-# Do NOT use this profile when running services via IDE (use dev profile only).
-
 spring:
   datasource:
-    url: jdbc:postgresql://auth-db:5432/auth_db
+    url: jdbc:postgresql://postgres:5432/lunecare?currentSchema=auth
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
   data:
