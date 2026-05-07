@@ -18,7 +18,7 @@ eureka:
     prefer-ip-address: false # override root application.yml
     hostname: ${spring.application.name} # each service registers by its name
 
-logging:
-  pattern:
-    # For distributed tracing using Open Telemetry
-    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
+# logging:
+#   pattern:
+#     # For distributed tracing using Open Telemetry
+#     level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
