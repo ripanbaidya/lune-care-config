@@ -7,7 +7,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, info, refresh, busrefresh
+        include: health, info, refresh, busrefresh, prometheus, metrics
   endpoint:
     busrefresh:
       access: unrestricted
@@ -17,6 +17,8 @@ management:
         enabled: true
     info:
       access: unrestricted
+    shutdown:
+      enabled: true
   health:
     liveness-state:
       enabled: true
@@ -25,6 +27,10 @@ management:
   info:
     env:
       enabled: true
+  # For micrometer-prometheous metrics, make sure mention the tags that should be the name wrt each microservice
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 eureka:
   instance:
