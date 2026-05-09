@@ -33,6 +33,10 @@ spring:
         format_sql: true
         default_schema: patient
 
+  data:
+    redis:
+      database: 0
+
 app:
   integrations:
     cloudinary:

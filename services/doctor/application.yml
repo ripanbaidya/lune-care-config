@@ -38,6 +38,10 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
         default-schema: doctor
+  
+  data:
+    redis:
+      database: 0
 
 resilience4j:
   circuitbreaker:
