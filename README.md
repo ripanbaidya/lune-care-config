@@ -1,95 +1,52 @@
-# lune-care-config
+lune-care-config
 
-centralized spring cloud config repository for the lunecare microservices ecosystem.
+Purpose
+- This repository stores centralized Spring Cloud Config files for the LuneCare microservices system.
+- Services and infrastructure components read configuration from this repo through the config server.
 
-## repository structure
+What is in this repository
+- Shared config files at root:
+  - `application.yml` for common defaults.
+  - `application-dev.yml` for shared development overrides.
+  - `application-prod.yml` for shared production overrides.
+  - `application-docker.yml` for shared Docker-specific values.
+- Infrastructure-specific config under `infrastructure/`.
+- Business service config under `services/`.
 
-```
-lune-care-config/
-├── application.yml               # Shared defaults — ALL services inherit this
-├── application-dev.yml           # Shared dev overrides
-├── application-prod.yml          # Shared prod overrides
-│
-├── infrastructure/
-│   ├── api-gateway/
-│   │   ├── application.yml
-│   │   ├── application-dev.yml
-│   │   └── application-prod.yml
-│   ├── config-server/
-│   │   ├── application.yml
-│   │   ├── application-dev.yml
-│   │   └── application-prod.yml
-│   └── eureka-server/
-│       ├── application.yml
-│       ├── application-dev.yml
-│       └── application-prod.yml
-│
-└── services/
-    ├── auth/
-    ├── doctor/
-    ├── patient/
-    ├── appointment/
-    ├── payment/
-    ├── notification/
-    ├── feedback/
-    └── admin/
-        └── (each with application.yml, application-dev.yml, application-prod.yml)
-```
+Current folder structure
+- `infrastructure/`
+  - `api-gateway/`
+  - `config-server/`
+  - `eureka-server/`
+- `services/`
+  - `admin/`
+  - `appointment/`
+  - `auth/`
+  - `doctor/`
+  - `feedback/`
+  - `notification/`
+  - `patient/`
+  - `payment/`
 
-## Config Loading Priority (High → Low)
+How config is resolved
+- Spring Cloud Config merges values from shared files and app-specific files.
+- App-specific values override shared defaults.
+- Profile files such as `application-dev.yml` or `application-prod.yml` override base `application.yml`.
 
-Spring Cloud Config merges configs in this order:
-1. `services/{app}/application-{profile}.yml`  ← highest priority
-2. `services/{app}/application.yml`
-3. `application-{profile}.yml`                 ← root shared
-4. `application.yml`                           ← lowest priority (root shared)
+Naming rules
+- Each service folder name should match `spring.application.name` used by that service.
+- Profile files should use the format `application-<profile>.yml`.
 
-## Secrets Management Strategy
+Environment files in this repo
+- `.env.template` is an example file for local setup.
+- `.env` may be used locally and should not be shared publicly.
 
-| Environment | Strategy |
-|---|---|
-| **Dev (local)** | `.env` file (never committed) + `export` in shell |
-| **Prod** | Environment variables injected by deployment platform (Docker, K8s, Render, Railway) |
+How to maintain this repo
+- Put cross-service defaults in root files.
+- Put service-only values in that service folder.
+- Avoid duplicating the same value in many places.
+- Do not store secrets directly in committed YAML files.
 
-**Never hardcode secrets in YAML files committed to Git.**
-
-### Loading .env locally
-
-```bash
-# Option 1: export manually
-export CLOUDINARY_API_KEY=your_key
-
-# Option 2: use dotenv-cli
-npx dotenv-cli -- java -jar service.jar
-
-# Option 3: IntelliJ → Run Config → Environment Variables
-```
-
-## How Each Service Bootstraps
-
-Each service's local `src/main/resources/application.yml` contains only:
-
-```yaml
-spring:
-  application:
-    name: auth             # must match folder name in this repo
-  profiles:
-    active: dev
-  config:
-    import: "optional:configserver:http://localhost:8888"
-
-server:
-  port: 8081
-```
-
-## Triggering Config Refresh at Runtime
-
-```bash
-# Refresh single service
-curl -X POST http://localhost:{port}/actuator/refresh
-
-# Broadcast refresh to ALL services via Spring Cloud Bus
-curl -X POST http://localhost:8888/actuator/busrefresh
-```
-
-
+Quick navigation
+- Start with `infrastructure/README.md` for infra components.
+- Start with `services/README.md` for business services.
